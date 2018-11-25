@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar_title_size">18sp</dimen>
+    <dimen name="weather_item_margin">16dp</dimen>
+    <dimen name="image_view_size">16dp</dimen>
+</resources>

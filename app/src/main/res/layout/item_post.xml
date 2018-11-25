@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="position"
+            type="Integer"/>
+        <variable
+            name="item"
+            type="com.mezmeraiz.anonym.model.Post"/>
+        <variable
+            name="viewModel"
+            type="com.mezmeraiz.anonym.viewmodel.PostViewModel"/>
+    </data>
+    <android.support.v7.widget.CardView
+        card_view:cardBackgroundColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation="6dp"
+        card_view:cardCornerRadius="2dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <com.mezmeraiz.anonym.ui.views.SquareFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:transitionName="image"
+                    bind:picasso="@{item.attachments.get(0).photo.photo_medium}"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:transitionName="view_container"
+                    android:id="@+id/view_container"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:layout_margin="16dp"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_views"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_gravity="center"
+                        android:layout_height="16dp"
+                        app:srcCompat="@drawable/eye" />
+
+                    <TextView
+
+                        android:layout_marginLeft="2dp"
+                        android:layout_gravity="center"
+                        android:textSize="10sp"
+                        android:textColor="@color/colorWhite8A"
+                        android:text="@{item.postviews.count.toString()}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+            </com.mezmeraiz.anonym.ui.views.SquareFrameLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:padding="16dp"
+                    android:text="@{item.text}"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorWhiteDE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="16dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:transitionName="like_container"
+                        android:id="@+id/like_container"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_gravity="center"
+                            android:layout_height="16dp"
+                            android:tint="@color/colorAccent"
+                            app:srcCompat="@drawable/like" />
+
+                        <TextView
+                            android:layout_marginLeft="4dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="1dp"
+                            android:textColor="@color/colorAccent"
+                            android:text="@{item.likes.count.toString()}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                    <FrameLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:transitionName="category"
+                            android:id="@+id/category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="1dp"
+                            android:lines="1"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:text="@{item.category_string}"
+                            android:textColor="@color/colorWhite8A"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+
+
+
+                    <LinearLayout
+                        android:transitionName="message_container"
+                        android:id="@+id/message_container"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_gravity="center"
+                            android:layout_height="16dp"
+                            android:tint="@color/colorAccent"
+                            app:srcCompat="@drawable/message" />
+
+                        <TextView
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/colorAccent"
+                            android:text="@{item.comments.count.toString()}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+</layout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <import type="android.view.View"></import>
+        <variable
+            name="viewModel"
+            type="com.mezmeraiz.anonym.viewmodel.PostViewModel"/>
+        <variable
+            name="context"
+            type="com.mezmeraiz.anonym.ui.fragments.PostFragment"/>
+    </data>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_weight="1"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        bind:setRefreshListener="@{viewModel.refreshListener}"
+        bind:setRefreshing="@{viewModel.refreshState}">
+
+
+        <com.mezmeraiz.anonym.ui.views.PaginateRecyclerView
+            android:id="@+id/recyclerView"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapter="@{viewModel.adapter}"
+            app:decoration="@{viewModel.decoration}"
+            bind:paginateLoadingState="@{viewModel.loading}"
+            bind:onLoadMoreListener="@{viewModel.onLoadMoreListener}"
+            >
+
+        </com.mezmeraiz.anonym.ui.views.PaginateRecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <FrameLayout
+        android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ProgressBar
+
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center" />
+    </FrameLayout>
+
+
+</LinearLayout>
+
+
+</layout>
